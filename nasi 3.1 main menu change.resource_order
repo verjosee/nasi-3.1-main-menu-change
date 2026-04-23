@@ -1,6 +1,6 @@
 {
   "FolderOrderSettings":[
-    {"name":"obj","order":6,"path":"folders/obj.yy",},
+    {"name":"obj","order":9,"path":"folders/spr/obj.yy",},
     {"name":"spr","order":7,"path":"folders/spr.yy",},
   ],
   "ResourceOrderSettings":[
@@ -44,7 +44,6 @@
     {"name":"RoomUI","order":49,"path":"roomui/RoomUI/RoomUI.yy",},
     {"name":"scr_highscore","order":16,"path":"scripts/scr_highscore/scr_highscore.yy",},
     {"name":"unlock_next_level","order":31,"path":"scripts/unlock_next_level/unlock_next_level.yy",},
-    {"name":"spr_loading_screen","order":56,"path":"sprites/spr_loading_screen/spr_loading_screen.yy",},
     {"name":"spr_meteor","order":2,"path":"sprites/spr_meteor/spr_meteor.yy",},
     {"name":"spr_play1","order":48,"path":"sprites/spr_play1/spr_play1.yy",},
     {"name":"spr_player_rocket","order":1,"path":"sprites/spr_player_rocket/spr_player_rocket.yy",},
@@ -58,6 +57,7 @@
     {"name":"Sprite14","order":29,"path":"sprites/Sprite14/Sprite14.yy",},
     {"name":"Sprite15","order":45,"path":"sprites/Sprite15/Sprite15.yy",},
     {"name":"Sprite16","order":55,"path":"sprites/Sprite16/Sprite16.yy",},
+    {"name":"Sprite17","order":56,"path":"sprites/Sprite17/Sprite17.yy",},
     {"name":"Sprite5","order":20,"path":"sprites/Sprite5/Sprite5.yy",},
     {"name":"Sprite7","order":26,"path":"sprites/Sprite7/Sprite7.yy",},
   ],

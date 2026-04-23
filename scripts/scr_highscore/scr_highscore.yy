@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_highscore",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_highscore",
+  "parent":{
+    "name":"obj",
+    "path":"folders/spr/obj.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

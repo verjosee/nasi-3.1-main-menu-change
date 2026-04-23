@@ -1,4 +1,4 @@
-sprite_index = spr_loading_screen;   // Ganti dengan nama sprite kamu yang sebenarnya
+sprite_index = Sprite17;   // Ganti dengan nama sprite kamu yang sebenarnya
 image_speed = 0;
 
 alpha = 0;
