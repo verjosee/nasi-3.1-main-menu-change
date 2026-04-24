@@ -4,6 +4,9 @@
 function init_game_settings() {
     /// Set up fullscreen dan window properties
     
+    // GUI Size - match room dimensions for proper scaling
+    display_set_gui_size(1980, 1080);
+    
     // Enable fullscreen mode
     window_set_fullscreen(true);
     
@@ -73,8 +76,18 @@ function init_global_variables() {
         global.level_difficulty = 1.0;
     }
     
-    if (!variable_global_exists("spawn_rate_base")) {
-        global.spawn_rate_base = 60;
+    // Debug system
+    if (!variable_global_exists("debug_mode")) {
+        global.debug_mode = false;
+    }
+    
+    if (!variable_global_exists("debug_unlock_all")) {
+        global.debug_unlock_all = false;
+    }
+    
+    // Previous room tracker for pause menu
+    if (!variable_global_exists("prev_room")) {
+        global.prev_room = room_menu;
     }
     
     show_debug_message("All global variables initialized");

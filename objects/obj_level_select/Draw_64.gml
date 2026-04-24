@@ -63,7 +63,7 @@ for (var i = 0; i < total_levels; i++) {
         level_y = start_y + 100;
     }
    
-    var is_unlocked = global.level_unlocked[i];
+    var is_unlocked = global.level_unlocked[i] || (variable_global_exists("debug_unlock_all") && global.debug_unlock_all);
     var is_selected = (i == selected_level);
     var level_num = i + 1;
     var scale = hover_scale[i];
@@ -133,7 +133,8 @@ draw_set_alpha(0.55);
 draw_rectangle(room_width/2 - 268, panel_y - 46, room_width/2 + 268, panel_y + 46, true);
 draw_set_alpha(1);
 
-if (global.level_unlocked[selected_level]) {
+var selected_unlocked = global.level_unlocked[selected_level] || (variable_global_exists("debug_unlock_all") && global.debug_unlock_all);
+if (selected_unlocked) {
     draw_set_color(c_lime);
     draw_text_transformed(room_width/2, panel_y - 15, "UNLOCKED", 0.9, 0.9, 0);
     draw_set_color(c_white);
@@ -144,6 +145,17 @@ if (global.level_unlocked[selected_level]) {
     draw_set_color(c_orange);
     draw_text_transformed(room_width/2, panel_y + 18, "COMPLETE PREVIOUS LEVEL TO UNLOCK", 0.7, 0.7, 0);
 }
+
+if (variable_global_exists("level_highscores") && array_length(global.level_highscores) > selected_level) {
+    draw_set_halign(fa_right);
+    draw_set_valign(fa_top);
+    draw_set_color(c_yellow);
+    draw_text_transformed(room_width - 30, 30, "HIGHSCORE LV " + string(selected_level + 1) + ": " + string(global.level_highscores[selected_level]), 0.85, 0.85, 0);
+}
+
+// Reset alignment
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
 
 // Progress Bar
 var unlocked_count = 0;

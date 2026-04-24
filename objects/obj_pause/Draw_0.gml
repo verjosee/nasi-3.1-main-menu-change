@@ -63,8 +63,8 @@ if (menu_page == "pause") {
     draw_set_alpha(1);
     
     // ===== MENU OPTIONS =====
-    var menu_y_start = 260;
-    var menu_spacing = 55;
+    var menu_y_start = 400;
+    var menu_spacing = 80;
     
     // Resume
     if (selected == 0) {
@@ -107,72 +107,6 @@ if (menu_page == "pause") {
     }
     
 
-}
-
-// ========================
-// 5. SETTINGS MENU (DIPERBAGUS)
-// ========================
-if (menu_page == "settings") {
-    // ===== JUDUL =====
-    draw_set_color(c_black);
-    draw_set_alpha(0.6);
-    draw_text_transformed(room_width/2 + 4, 104, "POWER-UP SETTINGS", 1.5, 1.5, 0);
-    
-    draw_set_alpha(1);
-    draw_set_color(c_aqua);
-    draw_text_transformed(room_width/2, 100, "POWER-UP SETTINGS", 1.5, 1.5, 0);
-    
-    draw_set_color(c_white);
-    draw_set_alpha(0.5);
-    draw_line(room_width/2 - 180, 125, room_width/2 + 180, 125);
-    
-    // ===== POWER-UP VALUES =====
-    var setting_y_start = 170;
-    var setting_spacing = 50;
-    
-    // Shield
-    if (selected == 0) draw_set_color(c_yellow);
-    else draw_set_color(c_white);
-    draw_text(room_width/2, setting_y_start, "SHIELD     : " + string(global.shield_chance) + "%");
-    
-    // Fast Up
-    if (selected == 1) draw_set_color(c_yellow);
-    else draw_set_color(c_white);
-    draw_text(room_width/2, setting_y_start + setting_spacing, "FAST UP    : " + string(global.fastup_chance) + "%");
-    
-    // Health
-    if (selected == 2) draw_set_color(c_yellow);
-    else draw_set_color(c_white);
-    draw_text(room_width/2, setting_y_start + setting_spacing * 2, "HEALTH     : " + string(global.health_chance) + "%");
-    
-    // Wingman
-    if (selected == 3) draw_set_color(c_yellow);
-    else draw_set_color(c_white);
-    draw_text(room_width/2, setting_y_start + setting_spacing * 3, "WINGMAN    : " + string(global.wingman_chance) + "%");
-    
-    // ===== HIGHLIGHT BAR =====
-    var highlight_y = setting_y_start + selected * setting_spacing;
-    draw_set_color(c_yellow);
-    draw_set_alpha(0.2);
-    draw_rectangle(room_width/2 - 130, highlight_y - 15, room_width/2 + 130, highlight_y + 15, false);
-    draw_set_alpha(1);
-    
-
-    // ===== TOTAL CHANCE =====
-    var total = global.shield_chance + global.fastup_chance + global.health_chance + global.wingman_chance;
-    
-    draw_set_alpha(0.8);
-    draw_text(room_width/2, 480, "TOTAL: " + string(total) + "%");
-    
-    if (total == 100) {
-        draw_set_color(c_lime);
-        draw_text(room_width/2, 530, "✓ BALANCED! ✓");
-    } else {
-        draw_set_color(c_red);
-        draw_text(room_width/2, 530, "⚠ MUST BE 100%! ⚠");
-    }
-    
-    draw_set_alpha(1);
 }
 
 // ========================

@@ -1,1 +1,0 @@
-layer_set_visible(layer_id, false)

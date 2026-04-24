@@ -3,7 +3,7 @@ draw_set_valign(fa_top);
 draw_set_font(fnt_score);
 
 // Timer
-var seconds = global.level_time_left div 60;
+var seconds = max(0, global.level_time_left div 60);
 var display_time = string(seconds) + "s";
 
 draw_set_color(c_white);

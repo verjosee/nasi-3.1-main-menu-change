@@ -1,4 +1,3 @@
-sprite_index = spr_play1;
+sprite_index = spr_play;
 image_speed = 0;
-
-layer_id = layer_get_id("menu")
+visible = true;

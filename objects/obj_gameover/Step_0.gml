@@ -1,18 +1,26 @@
-/// STEP EVENT - obj_gameover (Diperbaiki)
+/// STEP EVENT - obj_gameover
 
-if (!variable_instance_exists(id, "already_saved")) {
-    already_saved = true;   // agar hanya dijalankan sekali
+// ========== ANIMASI FADE IN ==========
+ui_timer += 1;
+if (ui_alpha < 1) {
+    ui_alpha += 0.03;
+    if (ui_alpha > 1) ui_alpha = 1;
+}
+
+// ========== ENTER ==========
+if (keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)) {
+    // Reset game variables
+    global.lives = 3;
+    global.score = 0;
     
-    // Simpan High Score
-    if (global.score > global.highscore) {
-        global.highscore = global.score;
-        save_highscore();
-    }
+    // Hancurkan object ini
+    instance_destroy();
     
-    // Simpan Level Progress dengan safety check
-    if (variable_global_exists("level_unlocked")) {
-        save_level_progress();
-    } else {
-        show_debug_message("Warning: level_unlocked belum diinisialisasi");
-    }
+    // Kembali ke main menu
+    room_goto(room_menu);
+}
+
+// ========== ESC ==========
+if (keyboard_check_pressed(vk_escape)) {
+    game_end();
 }

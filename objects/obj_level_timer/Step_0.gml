@@ -1,3 +1,11 @@
+// Jika player kalah, langsung pindah ke gameover (jangan proses timer lagi)
+if (global.level_time_left <= -1) {
+    show_debug_message("=== LEVEL " + string(global.current_level) + " FAILED (OUT OF LIVES) ===");
+    room_persistent = false;
+    room_goto(room_gameover);
+    exit;
+}
+
 // Kurangi waktu level
 global.level_time_left -= 1;
 
@@ -25,13 +33,8 @@ if (global.level_time_left <= 0 && global.level_time_left > -1) {
         save_level_progress();
     }
     
+    room_persistent = false;
     room_goto(room_gameover);
 }
 
-// Condition 2: OUT OF LIVES = LOSE
-// This is triggered when obj_player_rocket detects lives <= 0
-// It sets global.level_time_left = -1
-if (global.level_time_left < -1 && global.level_time_left >= -2) {
-    show_debug_message("=== LEVEL " + string(global.current_level) + " FAILED (OUT OF LIVES) ===");
-    room_goto(room_gameover);
-}
+// Lose condition ditangani di awal Step untuk mencegah race condition.
