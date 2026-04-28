@@ -6,6 +6,19 @@
 selected_level = 0;
 total_levels = 10;  // 10 LEVEL
 
+// Array untuk menyimpan nama room level
+level_rooms = array_create(total_levels);
+level_rooms[0] = "room_level1";
+level_rooms[1] = "room_level2";
+level_rooms[2] = "room_level3";
+level_rooms[3] = "room_level4";
+level_rooms[4] = "room_level5";
+level_rooms[5] = "room_level6";
+level_rooms[6] = "room_level7";
+level_rooms[7] = "room_level8";
+level_rooms[8] = "room_level9";
+level_rooms[9] = "room_level10";
+
 // ========================
 // ANIMASI TIMER
 // ========================
@@ -14,36 +27,30 @@ anim_timer = 0;
 // ========================
 // HOVER SCALE ARRAY (UKURAN 10)
 // ========================
-hover_scale = array_create(total_levels);  // SIZE 10
+hover_scale = array_create(total_levels);
 for (var i = 0; i < total_levels; i++) {
     hover_scale[i] = 1;
 }
 
 // ========================
-// INISIALISASI GLOBAL LEVEL UNLOCKED (UKURAN 10!)
+// INISIALISASI GLOBAL LEVEL UNLOCKED
 // ========================
 if (!variable_global_exists("level_unlocked")) {
-    global.level_unlocked = array_create(total_levels);  // SIZE 10, BUKAN 5!
+    global.level_unlocked = array_create(total_levels);
+    global.level_unlocked[0] = true; // Level 1 selalu terbuka
     
-    // Level 1 selalu terbuka
-    global.level_unlocked[0] = true;
-    
-    // Level 2-10 default terkunci
     for (var i = 1; i < total_levels; i++) {
         global.level_unlocked[i] = false;
     }
 } else {
-    // Jika sudah ada tapi ukurannya kecil, resize
     if (array_length(global.level_unlocked) < total_levels) {
         var old_array = global.level_unlocked;
         global.level_unlocked = array_create(total_levels);
         
-        // Copy data lama
         for (var i = 0; i < array_length(old_array); i++) {
             global.level_unlocked[i] = old_array[i];
         }
         
-        // Isi sisanya dengan false
         for (var i = array_length(old_array); i < total_levels; i++) {
             global.level_unlocked[i] = false;
         }
@@ -51,15 +58,14 @@ if (!variable_global_exists("level_unlocked")) {
 }
 
 // ========================
-// INISIALISASI GLOBAL LEVEL COMPLETED (UKURAN 10!)
+// INISIALISASI GLOBAL LEVEL COMPLETED
 // ========================
 if (!variable_global_exists("level_completed")) {
-    global.level_completed = array_create(total_levels);  // SIZE 10
+    global.level_completed = array_create(total_levels);
     for (var i = 0; i < total_levels; i++) {
         global.level_completed[i] = false;
     }
 } else {
-    // Resize jika perlu
     if (array_length(global.level_completed) < total_levels) {
         var old_array = global.level_completed;
         global.level_completed = array_create(total_levels);
