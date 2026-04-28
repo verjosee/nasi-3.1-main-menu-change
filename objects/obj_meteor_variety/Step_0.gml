@@ -33,6 +33,32 @@ if (place_meeting(x, y, obj_bullet)) {
             // Create explosion effect
             effect_create_above(ef_explosion, x, y, 2, c_orange);
             
+            // === SPAWN POWER-UP (35% chance) ===
+            if (irandom(99) < 35) {
+                var pu = instance_create_layer(x, y, "Instances", obj_powerup);
+                
+                var rand = irandom(99);
+                
+                if (rand < 35) {
+                    pu.type = "shield";
+                }
+                else if (rand < 60) {
+                    pu.type = "fastup";
+                }
+                else if (rand < 80) {
+                    pu.type = "health";
+                }
+                else {
+                    pu.type = "wingman";
+                }
+                
+                // Set sprite based on type
+                if (pu.type == "shield")      pu.sprite_index = spr_powerup_shield;
+                else if (pu.type == "fastup") pu.sprite_index = spr_powerup_fastup;
+                else if (pu.type == "health") pu.sprite_index = spr_powerup_health;
+                else if (pu.type == "wingman") pu.sprite_index = spr_powerup_wingman;
+            }
+            
             // Destroy meteor
             instance_destroy();
         }
