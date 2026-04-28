@@ -1,7 +1,12 @@
-/// Create Event - Meteor Variety System
+/// Create Event - Meteor Variety System (HANYA SPRITE & ROTASI)
 
-// Initialize meteor type system - PILIH RANDOM
-meteor_type = irandom_range(0, 3);
+// === PENTING: Beri nilai default jika meteor_type belum di-set ===
+if (variable_instance_exists(id, "meteor_type")) {
+    // Jika variabel sudah ada, gunakan nilainya
+} else {
+    // Jika belum, set ke random (0-3)
+    meteor_type = irandom_range(0, 3);
+}
 
 // Set sprite and size based on type
 switch(meteor_type) {
@@ -25,18 +30,17 @@ switch(meteor_type) {
         image_xscale = 0.7;
         image_yscale = 0.7;
         break;
+    default:
+        sprite_index = spr_meteor;
+        image_xscale = 1;
+        image_yscale = 1;
+        break;
 }
 
-// Gameplay properties
-speed = random_range(2, 4);
+// Gameplay properties (speed di-set oleh spawner)
 hp = 1;
 score_value = 10;
 
 // Random rotation - untuk efek muter-muter
 rotation = random(360);
-rotation_speed = random_range(-1, 1); // kecepatan putar random (kiri/kanan)
-
-// Random starting position
-x = random(room_width);
-y = random(room_height);
-direction = random(360);
+rotation_speed = random_range(-2, 2);

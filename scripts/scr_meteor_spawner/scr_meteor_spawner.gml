@@ -10,10 +10,14 @@ function spawn_meteor_variety() {
     meteor.meteor_type = type;
 
     // Spawn from right side, off-screen
-    meteor.x = room_width + 100;  // ← dikurangi dari 600 agar tidak terlalu jauh
-    meteor.y = random_range(50, room_height - 50);
+    meteor.x = room_width + random_range(50, 150);  // variasi posisi spawn
+    meteor.y = random_range(30, room_height - 30);
     meteor.direction = 180; // Moving left
-    meteor.speed = random_range(3, 6); // ← tambahkan speed agar meteor bergerak
+    
+    // Speed berdasarkan level (makin tinggi level makin cepat)
+    var base_speed = 3;
+    var level_bonus = min(5, global.level / 10); // maksimal +5 speed
+    meteor.speed = random_range(base_speed, base_speed + 2 + level_bonus);
     
     return meteor;
 }

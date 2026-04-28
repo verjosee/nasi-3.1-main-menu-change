@@ -1,18 +1,22 @@
+/// Alarm 0 - Meteor Spawner
+
 if (!instance_exists(obj_level)) {
     alarm[0] = 30;
     exit;
 }
 
-// Spawn meteor with variety system (direct spawning)
-var type = irandom(3); // Random 0, 1, 2, or 3 (spr_meteor, 1, 2, 3)
+var spawn_rate = max(15, 45 - (global.level * 3));
 
-// Create meteor with variety
-var meteor = instance_create_layer(0, 0, "Instances", obj_meteor_variety);
-meteor.meteor_type = type;
+// Buat meteor dengan tipe langsung di constructor (jika pakai struct)
+var meteor_type = irandom(3);
+var meteor = instance_create_layer(room_width + random_range(150, 350), 
+                                    random_range(40, room_height - 40), 
+                                    "Instances", 
+                                    obj_meteor_variety);
 
-// Spawn from right side, off-screen (far enough so player can't see)
-meteor.x = room_width + 600;
-meteor.y = random_range(50, room_height - 50);
-meteor.direction = 180; // Moving left
+// Set propertis lainnya
+meteor.meteor_type = meteor_type;
+meteor.direction = 180;
+meteor.speed = random_range(3, 7);
 
-alarm[0] = max(15, 45 - (global.level * 4));   // spawn rate
+alarm[0] = spawn_rate;
