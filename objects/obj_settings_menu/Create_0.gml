@@ -22,6 +22,11 @@ hover_id = "";
 ui_alpha = 0;
 ui_timer = 0;
 
+if (!variable_global_exists("music_volume")) global.music_volume = 0.7;
+if (!variable_global_exists("sfx_volume")) global.sfx_volume = 0.8;
+if (!variable_global_exists("fullscreen")) global.fullscreen = false;
+if (!variable_global_exists("debug_unlock_all")) global.debug_unlock_all = false;
+
 // Initialize sliders
 music_slider = instance_create_layer(0, 0, "Instances", obj_volume_slider);
 music_slider.slider_type = "music";
@@ -38,11 +43,6 @@ sfx_slider.slider_x = room_width * 0.4;
 sfx_slider.slider_y = sfx_y;
 sfx_slider.min_x = room_width * 0.4;
 sfx_slider.max_x = room_width * 0.6;
-
-if (!variable_global_exists("music_volume")) global.music_volume = 0.7;
-if (!variable_global_exists("sfx_volume")) global.sfx_volume = 0.8;
-if (!variable_global_exists("fullscreen")) global.fullscreen = false;
-if (!variable_global_exists("debug_unlock_all")) global.debug_unlock_all = false;
 
 if (file_exists("settings.ini")) {
     ini_open("settings.ini");

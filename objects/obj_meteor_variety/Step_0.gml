@@ -1,6 +1,8 @@
 /// Step Event - Meteor Variety System
-// Update rotation
+
+// Update rotation DAN terapkan ke sprite
 rotation += rotation_speed;
+image_angle = rotation;  // ← TAMBAHKAN INI agar meteor benar-benar berputar
 
 // Move meteor
 x += lengthdir_x(speed, direction);
@@ -28,7 +30,8 @@ if (place_meeting(x, y, obj_bullet)) {
         // Add score
         global.score += score_value;
         
-        // Create explosion effect (you can add obj_explosion later)
+        // Create explosion effect
+        effect_create_above(ef_explosion, x, y, 2, c_orange);
         
         // Destroy meteor
         instance_destroy();
@@ -41,6 +44,7 @@ if (place_meeting(x, y, obj_player_rocket)) {
     global.lives--;
     
     // Create explosion effect
+    effect_create_above(ef_explosion, x, y, 2, c_red);
     
     // Destroy meteor
     instance_destroy();
