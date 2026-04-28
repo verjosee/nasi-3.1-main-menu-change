@@ -1,3 +1,4 @@
+// ============ STEP EVENT ============
 if (state == "fade_in") {
     alpha += fade_speed;
     if (alpha >= 1) {

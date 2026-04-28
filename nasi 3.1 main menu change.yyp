@@ -105,8 +105,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"room_settings","path":"rooms/room_settings/room_settings.yy",},},
     {"roomId":{"name":"room_loading_screen","path":"rooms/room_loading_screen/room_loading_screen.yy",},},
+    {"roomId":{"name":"room_settings","path":"rooms/room_settings/room_settings.yy",},},
     {"roomId":{"name":"room_menu","path":"rooms/room_menu/room_menu.yy",},},
     {"roomId":{"name":"Room16","path":"rooms/Room16/Room16.yy",},},
     {"roomId":{"name":"room1","path":"rooms/room1/room1.yy",},},
