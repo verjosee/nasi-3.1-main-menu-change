@@ -37,8 +37,10 @@ switch(meteor_type) {
         break;
 }
 
-// Gameplay properties (speed di-set oleh spawner)
-hp = 1;
+// Gameplay properties (speed & HP di-set oleh spawner)
+if (!variable_instance_exists(id, "hp")) {
+    hp = 1; // Default HP jika tidak di-set oleh spawner
+}
 score_value = 10;
 
 // Random rotation - untuk efek muter-muter

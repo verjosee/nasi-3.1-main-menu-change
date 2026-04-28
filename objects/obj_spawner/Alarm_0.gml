@@ -23,4 +23,19 @@ var base_speed = 3;
 var level_speed_bonus = (global.level - 1) * 0.5; // +0.5 speed per level
 meteor.speed = random_range(base_speed + level_speed_bonus, base_speed + 3 + level_speed_bonus);
 
+// HP berdasarkan level dengan probability (max 3 HP)
+// Level 1: peluang kecil untuk HP > 1
+// Level tinggi: peluang besar untuk HP > 1
+var hp_chance = random(100);
+var hp_2_chance = 10 + (global.level * 4); // Level 1: 14%, Level 10: 50%
+var hp_3_chance = 0 + (global.level * 3);  // Level 1: 3%, Level 10: 30%
+
+if (hp_chance < hp_3_chance) {
+    meteor.hp = 3;
+} else if (hp_chance < hp_2_chance) {
+    meteor.hp = 2;
+} else {
+    meteor.hp = 1;
+}
+
 alarm[0] = spawn_rate;
