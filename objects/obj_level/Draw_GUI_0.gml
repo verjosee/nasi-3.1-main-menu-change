@@ -29,3 +29,4 @@ draw_text_transformed(room_width/2, panel_y1 + 35, string(global.level), 1.5, 1.
 // Reset alignment
 draw_set_halign(fa_left);
 draw_set_color(c_white);
+draw_set_font(-1);

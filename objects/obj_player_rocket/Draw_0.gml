@@ -1,4 +1,45 @@
-// Gambar roket normal
+// ========================
+// DEATH EXPLOSION PARTICLES
+// ========================
+if (is_exploding) {
+    // Screen shake offset
+    var shake_x = random_range(-explosion_shake, explosion_shake);
+    var shake_y = random_range(-explosion_shake, explosion_shake);
+    
+    // Draw explosion particles (behind flash)
+    for (var i = 0; i < array_length(explosion_particles); i++) {
+        var p = explosion_particles[i];
+        var alpha = p.life / p.max_life;
+        var psize = p.size * alpha;
+        
+        draw_set_color(p.color);
+        draw_set_alpha(alpha);
+        draw_circle(p.px + shake_x, p.py + shake_y, psize, false);
+    }
+    
+    // Draw smoke ring
+    draw_set_color(c_gray);
+    draw_set_alpha((explosion_timer / 90) * 0.4);
+    var smoke_size = (90 - explosion_timer) * 2;
+    draw_circle(x + 60 + shake_x, y + 80 + shake_y, smoke_size, true);
+    
+    // Draw central bright flash
+    draw_set_color(c_white);
+    draw_set_alpha((explosion_timer / 90) * 0.9);
+    draw_circle(x + 60 + shake_x, y + 80 + shake_y, 40 + (90 - explosion_timer) * 0.8, false);
+    
+    // Draw fire core
+    draw_set_color(c_orange);
+    draw_set_alpha((explosion_timer / 90) * 0.7);
+    draw_circle(x + 60 + shake_x, y + 80 + shake_y, 25 + (90 - explosion_timer) * 0.3, false);
+    
+    draw_set_alpha(1);
+    
+    // Skip drawing rocket and shield during explosion
+    exit;
+}
+
+// Gambar roket normal (only when not exploding)
 draw_self();
 
 // === VISUAL SHIELD ROKET ===
@@ -22,9 +63,6 @@ if (shield_active) {
     
     draw_set_alpha(1);
 }
-
-// Gambar roket normal
-draw_self();
 
 // === AURA KUNING FAST UP (VERSI TIPIS & ELEGANT) ===
 if (fastup_active) {

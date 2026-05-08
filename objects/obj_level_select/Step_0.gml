@@ -10,6 +10,27 @@ for (var i = 0; i < total_levels; i++) {
 }
 
 // ========================
+// BACK BUTTON
+// ========================
+var back_x = 30;
+var back_y = 30;
+var back_w = 100;
+var back_h = 40;
+
+hover_back = false;
+
+if (mouse_x >= back_x && mouse_x <= back_x + back_w && mouse_y >= back_y && mouse_y <= back_y + back_h) {
+    hover_back = true;
+    window_set_cursor(cr_handpoint);
+    
+    if (mouse_check_button_pressed(mb_left)) {
+        var snd = audio_play_sound(click, 1, false);
+        audio_sound_gain(snd, global.sfx_volume);
+        room_goto(room_menu);
+    }
+}
+
+// ========================
 // KEYBOARD SELECT
 // ========================
 if (keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)) {
@@ -30,14 +51,24 @@ if (keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)) {
 }
 
 // ========================
+// ESC TO GO BACK
+// ========================
+if (keyboard_check_pressed(vk_escape)) {
+    room_goto(room_menu);
+}
+
+// ========================
 // MOUSE HITBOX & SELECT
 // ========================
 var m_x = mouse_x;
 var m_y = mouse_y;
 
-var start_x = room_width/2 - 440;
+// Calculate responsive spacing based on room width (same as Draw event)
+var total_width_needed = 5 * 200;
+var available_width = room_width - 100;
+var spacing = min(200, available_width / 5);
+var start_x = room_width/2 - (spacing * 4) / 2;
 var start_y = room_height/2 - 50;
-var spacing = 220;
 var radius = 55;
 
 var is_hovering = false;
@@ -53,6 +84,8 @@ for (var i = 0; i < total_levels; i++) {
         window_set_cursor(cr_handpoint);
         
         if (mouse_check_button_pressed(mb_left)) {
+            var snd = audio_play_sound(click, 1, false);
+            audio_sound_gain(snd, global.sfx_volume);
             if (global.level_unlocked[selected_level]) {
                 global.current_level = selected_level + 1;
                 
@@ -72,7 +105,7 @@ for (var i = 0; i < total_levels; i++) {
     }
 }
 
-if (!is_hovering) {
+if (!is_hovering && !hover_back) {
     window_set_cursor(cr_default);
 }
 
@@ -81,4 +114,9 @@ for (var i = 0; i < 200; i++) {
     bintang_alpha[i] += 0.003 * (irandom(2) - 1);
     if (bintang_alpha[i] > 0.9) bintang_alpha[i] = 0.9;
     if (bintang_alpha[i] < 0.1) bintang_alpha[i] = 0.1;
+}
+
+// F11 Fullscreen
+if (keyboard_check_pressed(vk_f11)) {
+    window_set_fullscreen(!window_get_fullscreen());
 }

@@ -1,5 +1,6 @@
 /// DRAW GUI EVENT - obj_level_select (X MERAH DIHAPUS, TEKS PANEL DIKECILKAN)
 
+draw_set_font(font_default);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
@@ -48,9 +49,12 @@ draw_set_alpha(1);
 // ========================
 // LEVEL SELECTOR - TANPA X MERAH
 // ========================
-var start_x = room_width/2 - 440;
+// Calculate responsive spacing based on room width
+var total_width_needed = 5 * 200; // 5 buttons * 200 spacing
+var available_width = room_width - 100; // 50px padding on each side
+var spacing = min(200, available_width / 5);
+var start_x = room_width/2 - (spacing * 4) / 2;
 var start_y = room_height/2 - 50;
-var spacing = 220;
 
 for (var i = 0; i < total_levels; i++) {
     var level_x, level_y;
@@ -179,5 +183,28 @@ draw_text_transformed(room_width/2, room_height - 65, "PROGRESS: " + string(unlo
 // Reset
 draw_set_alpha(1);
 draw_set_color(c_white);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+draw_set_font(-1);
+
+// Back button
+var back_x = 30;
+var back_y = 30;
+var back_w = 100;
+var back_h = 40;
+
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+
+if (hover_back) {
+    draw_set_color(c_yellow);
+} else {
+    draw_set_color(c_aqua);
+}
+
+draw_roundrect(back_x, back_y, back_x + back_w, back_y + back_h, false);
+draw_set_color(c_black);
+draw_text(back_x + back_w/2, back_y + back_h/2, "BACK");
+
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);

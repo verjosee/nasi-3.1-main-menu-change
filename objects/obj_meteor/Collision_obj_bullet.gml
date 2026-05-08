@@ -5,8 +5,8 @@ instance_destroy(other);     // hancurkan peluru
 if (hp > 0) {
     // Meteor masih hidup
     effect_create_above(ef_smoke, x, y, 1, c_gray);
-    image_xscale -= 0.1;
-    image_yscale = image_xscale;
+    // Update skala menggunakan function terpusat
+    update_meteor_scale();
 } 
 else {
     // Meteor hancur total
@@ -19,8 +19,11 @@ else {
     // Efek ledakan
     effect_create_above(ef_explosion, x, y, 1.8, c_orange);
     
-    // === SPAWN POWER-UP (35% chance) ===
-    if (irandom(99) < 35) {
+    // Play explode sound
+    audio_play_sound(explode, 1, false);
+    
+    // === SPAWN POWER-UP (30% chance) ===
+    if (irandom(99) < 30) {
         
         var pu = instance_create_layer(x, y, "Instances", obj_powerup);
         

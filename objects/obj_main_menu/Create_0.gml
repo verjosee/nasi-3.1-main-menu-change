@@ -2,6 +2,14 @@
 randomize();
 game_set_speed(60, gamespeed_fps);
 
+// Play main menu music
+audio_stop_all();
+if (audio_exists(music1)) {
+    audio_play_sound(music1, 1, true);
+    var vol = variable_global_exists("music_volume") ? global.music_volume : 0.7;
+    audio_sound_gain(music1, vol);
+}
+
 // Pastikan sistem cheat aktif (Persistent)
 if (!instance_exists(obj_cheat)) {
     instance_create_layer(0, 0, "Instances", obj_cheat);
@@ -70,10 +78,10 @@ var center_x = room_width / 2;
 var center_y = room_height / 2;
 
 // Konfigurasi flex layout
-var button_width = 110;  // Perkiraan lebar tombol (dikurangi agar lebih rapat)
-var button_spacing = 10;  // Jarak antar tombol (dikurangi agar lebih rapat)
+var button_width = 110;  // Perkiraan lebar tombol
+var button_spacing = 45;  // Jarak antar tombol (lebarin lagi)
 var total_height = (3 * button_width * 0.7) + (2 * button_spacing); // Tinggi total semua tombol
-var start_y = center_y - (total_height / 2) + 50; // Mulai dari tengah, geser sedikit ke bawah
+var start_y = center_y - (total_height / 2); // Mulai tepat di tengah
 
 // Posisi tombol dengan flex layout (vertical center)
 var play_y = start_y;
@@ -93,8 +101,8 @@ if (instance_exists(obj_btn_play)) {
 } else {
     btn_play = instance_create_layer(center_x, play_y, _layer, obj_btn_play);
 }
-btn_play.image_xscale = 0.7;
-btn_play.image_yscale = 0.7;
+btn_play.image_xscale = 0.6;
+btn_play.image_yscale = 0.6;
 btn_play.visible = true;
 btn_play.image_alpha = 1;
 

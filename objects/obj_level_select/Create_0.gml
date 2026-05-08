@@ -1,5 +1,12 @@
 /// CREATE EVENT - obj_level_select
 
+// Play level select music
+audio_stop_all();
+if (audio_exists(music3)) {
+    audio_play_sound(music3, 1, true);
+    audio_sound_gain(music3, global.music_volume);
+}
+
 // ========================
 // LEVEL SYSTEM
 // ========================
@@ -96,6 +103,9 @@ for (var i = 0; i < 200; i++) {
 
 // Load level progress dari file
 load_level_progress();
+
+// Back button hover state
+hover_back = false;
 
 show_debug_message("=== LEVEL SELECT CREATED ===");
 show_debug_message("Total levels: " + string(total_levels));

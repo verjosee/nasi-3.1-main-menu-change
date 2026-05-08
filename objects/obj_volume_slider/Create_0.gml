@@ -15,3 +15,8 @@ rotation_speed = 0;
 // Meteor handle properties
 handle_size = 32;
 handle_offset = 0;
+
+// Use default meteor sprite for slider handle
+meteor_sprite = spr_meteor;
+
+show_buttons = true;  // Default, tapi bisa di-override

@@ -1,9 +1,26 @@
 // Jika player kalah, langsung pindah ke gameover (jangan proses timer lagi)
-if (global.level_time_left <= -1) {
+// -3 = explosion animation playing, wait for it to finish
+// -2 = animation done, go to gameover
+if (global.level_time_left == -3) {
+    // Wait for explosion animation to finish
+    exit;
+}
+
+if (global.level_time_left <= -2) {
     show_debug_message("=== LEVEL " + string(global.current_level) + " FAILED (OUT OF LIVES) ===");
+    audio_stop_all(); // Stop background music
     room_persistent = false;
     room_goto(room_gameover);
     exit;
+}
+
+// ========== START DELAY ==========
+// Wait for rocket entrance animation before starting countdown
+if (instance_exists(obj_player_rocket)) {
+    var rocket = instance_find(obj_player_rocket, 0);
+    if (rocket.entrance_active) {
+        exit; // Don't start countdown yet
+    }
 }
 
 // Kurangi waktu level
@@ -34,6 +51,7 @@ if (global.level_time_left <= 0 && global.level_time_left > -1) {
     }
     
     room_persistent = false;
+    audio_stop_all(); // Stop background music
     room_goto(room_gameover);
 }
 

@@ -39,3 +39,4 @@ draw_text_transformed(panel_x2 - 15, panel_y1 + 50, string(global.lives), 1.5, 1
 // Reset
 draw_set_halign(fa_left);
 draw_set_color(c_white);
+draw_set_font(-1);

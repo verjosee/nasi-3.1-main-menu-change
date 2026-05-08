@@ -16,25 +16,27 @@ draw_roundrect(slider_x, slider_y - slider_height/2, fill_x, slider_y + slider_h
 // Calculate handle position
 var handle_x = slider_x + slider_width * value;
 
-// Draw meteor handle (will be replaced with sprite later)
+// Draw meteor handle
 draw_set_alpha(1);
-draw_set_color(dragging ? c_yellow : (hover ? c_white : c_ltgray));
+var meteor_scale = 0.6;
 
-// Draw rotating meteor placeholder (circle with rotation effect)
-draw_set_alpha(0.8);
-draw_circle(handle_x, slider_y, handle_size/2, false);
-
-// Add rotation indicator lines
-draw_set_alpha(1);
-for (var i = 0; i < 4; i++) {
-    var angle = degtorad(rotation + i * 90);
-    var x1 = handle_x + cos(angle) * (handle_size/2 - 4);
-    var y1 = slider_y + sin(angle) * (handle_size/2 - 4);
-    var x2 = handle_x + cos(angle) * (handle_size/2 + 2);
-    var y2 = slider_y + sin(angle) * (handle_size/2 + 2);
+if (sprite_exists(spr_meteor)) {
+    draw_sprite_ext(spr_meteor, 0, handle_x, slider_y, meteor_scale, meteor_scale, rotation, c_white, 1);
+} else {
+    // Fallback: draw circle if sprite doesn't exist
+    draw_set_color(dragging ? c_yellow : (hover ? c_white : c_ltgray));
+    draw_circle(handle_x, slider_y, handle_size/2, false);
     
+    // Add rotation indicator lines
     draw_set_color(c_orange);
-    draw_line(x1, y1, x2, y2);
+    for (var i = 0; i < 4; i++) {
+        var angle = degtorad(rotation + i * 90);
+        var x1 = handle_x + cos(angle) * (handle_size/2 - 4);
+        var y1 = slider_y + sin(angle) * (handle_size/2 - 4);
+        var x2 = handle_x + cos(angle) * (handle_size/2 + 2);
+        var y2 = slider_y + sin(angle) * (handle_size/2 + 2);
+        draw_line(x1, y1, x2, y2);
+    }
 }
 
 // Draw percentage text

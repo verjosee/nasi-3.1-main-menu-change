@@ -50,6 +50,7 @@ if (paused) {
                     if (i == 3) { 
                         instance_activate_all();
                         room_persistent = false; // Reset persistence
+                        audio_stop_all(); // Stop background music
                         room_goto(room_menu);
                     }
                 }
@@ -89,6 +90,7 @@ if (paused) {
             if (selected == 3) { 
                 instance_activate_all();
                 room_persistent = false;
+                audio_stop_all(); // Stop background music
                 room_goto(room_menu);
             }
         }
@@ -100,4 +102,9 @@ for (var i = 0; i < 150; i++) {
     bintang_alpha[i] += 0.005 * (irandom(2) - 1);
     if (bintang_alpha[i] > 0.9) bintang_alpha[i] = 0.9;
     if (bintang_alpha[i] < 0.2) bintang_alpha[i] = 0.2;
+}
+
+// F11 Fullscreen
+if (keyboard_check_pressed(vk_f11)) {
+    window_set_fullscreen(!window_get_fullscreen());
 }

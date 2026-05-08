@@ -12,3 +12,4 @@ draw_text(room_width/2, 20, "TIME LEFT: " + display_time);
 // Wave
 draw_set_color(c_yellow);
 draw_text(room_width/2, 60, "WAVE " + string(global.current_wave) + "/3");
+draw_set_font(-1);

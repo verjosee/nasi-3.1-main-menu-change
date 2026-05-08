@@ -1,5 +1,16 @@
 /// STEP EVENT - Level Manager
 
+// ========== START DELAY ==========
+if (start_delay_timer > 0) {
+    start_delay_timer -= 1;
+    if (start_delay_timer <= 0) {
+        wave_active = true;
+        show_debug_message("=== WAVES STARTED ===");
+    }
+    // Don't process anything else during start delay
+    exit;
+}
+
 // ========== COUNTDOWN TIMER ==========
 if (countdown_active && !level_complete) {
     countdown_time -= 1;

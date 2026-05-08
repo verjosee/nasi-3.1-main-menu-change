@@ -10,18 +10,32 @@ if (dragging) {
     if (mouse_check_button(mb_left)) {
         // Calculate new value based on mouse position
         var new_value = (mx - min_x) / (max_x - min_x);
+        var old_value = value;
         value = clamp(new_value, 0, 1);
         
-        // Update rotation when dragging
-        rotation_speed = 8;
+        // Calculate sliding speed
+        var slide_speed = abs(value - old_value) * 100;
+        
+        // Play slide sound if value changed
+        if (value != old_value) {
+            var snd = audio_play_sound(slide, 1, false);
+            audio_sound_gain(snd, global.sfx_volume);
+        }
+        
+        // Update rotation based on sliding speed
+        rotation_speed = slide_speed * 5;
         rotation += rotation_speed;
         
         // Update global volume based on slider type
         if (slider_type == "music") {
             global.music_volume = value;
-            audio_master_gain(global.music_volume);
-        } else if (slider_type == "sfx") {
-            global.sfx_volume = value;
+            // Terapkan ke semua music yang mungkin sedang diputar
+            if (audio_exists(music1)) audio_sound_gain(music1, global.music_volume);
+            if (audio_exists(music2)) audio_sound_gain(music2, global.music_volume);
+            if (audio_exists(music3)) audio_sound_gain(music3, global.music_volume);
+        } else if (slider_type == "audio" || slider_type == "sfx") {
+            global.audio_volume = value;
+            global.sfx_volume = global.audio_volume;
         }
     } else {
         dragging = false;

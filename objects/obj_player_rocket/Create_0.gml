@@ -1,47 +1,79 @@
-/// CREATE EVENT - obj_player_rocket
+// ========================
+// WINGMAN SPAWN CONTROL
+// ========================
+wingman_spawned = false;  // Flag agar wingman hanya spawn sekali per power-up
 
-// Posisi awal
-x = 100;
+// ========================
+// POSISI AWAL
+// ========================
+x = -200; // Start off-screen left
 y = room_height / 2;
 
-// Variabel tembak
+// ========================
+// ENTRANCE ANIMATION
+// ========================
+entrance_active = true;
+entrance_target_x = 100;
+entrance_speed = 8;
+
+// ========================
+// VARIABEL TEMBAK
+// ========================
 shoot_cooldown = 0;
-shoot_delay = 10;              // delay normal
-normal_shoot_delay = 10;       // simpan delay normal untuk reset
+shoot_delay = 10;
+normal_shoot_delay = 10;
 
-// Variabel trail
+// ========================
+// VARIABEL TRAIL
+// ========================
 trail_timer = 0;
-fastup_trail_timer = 0;        // untuk trail khusus fastup
+fastup_trail_timer = 0;
 
-// Variabel invincible
+// ========================
+// INVINCIBLE
+// ========================
 invincible = false;
 invincible_timer = 0;
 
-// Power-up Shield
+// ========================
+// POWER-UP SHIELD
+// ========================
 shield_active = false;
 shield_timer = 0;
 shield_radius = 55;
 
-// Power-up Fast Up
+// ========================
+// POWER-UP FAST UP
+// ========================
 fastup_active = false;
 fastup_timer = 0;
 
-// Power-up Health (tambahan)
+// ========================
+// POWER-UP HEALTH
+// ========================
 health_active = false;
 health_timer = 0;
 
-// Power-up Wingman (tambahan)
+// ========================
+// POWER-UP WINGMAN
+// ========================
 wingman_active = false;
 wingman_timer = 0;
 
-// Visual
+// ========================
+// VISUAL
+// ========================
 image_alpha = 1;
 
-// Di CREATE EVENT player, tambahkan:
+// ========================
+// LEVEL START TIME
+// ========================
 level_start_time = current_time;
 
-/// Saat game dimulai (misal di Create Event atau Step Event sekali)
-
-with (obj_level_manager) {
-    countdown_active = true;
-}
+// ========================
+// DEATH EXPLOSION ANIMATION
+// ========================
+is_exploding = false;
+explosion_timer = 0;
+explosion_particles = [];
+explosion_shake = 0;

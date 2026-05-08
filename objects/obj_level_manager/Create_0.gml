@@ -23,6 +23,10 @@ enemy_spawn_delay = 30;  // spawn setiap 0.5 detik
 game_over = false;
 level_complete = false;
 
+// ========== START DELAY ==========
+start_delay_timer = 120; // 2 detik jeda sebelum meteor muncul
+wave_active = false;
+
 // ========== INISIALISASI GLOBAL ==========
 if (!variable_global_exists("current_level")) {
     global.current_level = 1;
@@ -41,3 +45,8 @@ if (!variable_global_exists("level_completed")) {
 }
 
 show_debug_message("Level Manager Ready - Level: " + string(global.current_level));
+
+// Spawn tutorial if level 1
+if (global.current_level == 1) {
+    instance_create_layer(0, 0, "Instances", obj_tutorial);
+}

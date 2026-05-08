@@ -106,7 +106,11 @@ if (menu_page == "pause") {
         draw_text(room_width/2, menu_y_start + menu_spacing * 3, "QUIT");
     }
     
-
+    // ===== PESAN BAWAH =====
+    draw_set_color(c_ltgray);
+    draw_set_alpha(0.7 + 0.3 * sin(current_time * 0.003));
+    draw_text(room_width/2, room_height - 100, "Use Arrow Keys or Mouse to Navigate");
+    draw_text(room_width/2, room_height - 70, "Press ESC to Resume");
 }
 
 // ========================

@@ -33,42 +33,61 @@ for (var i = 0; i < 200; i++) {
     }
 }
 draw_set_alpha(1);
-
 // ========================
 // 3.5 EFEK PARTIKEL
 // ========================
+
 draw_set_color(c_aqua);
-draw_set_alpha(0.3);
-for (var i = 0; i < 50; i++) {
-    var px = room_width/2 + sin(current_time * 0.002 + i) * 200;
-    var py = 400 + cos(current_time * 0.003 + i) * 50;
-    draw_circle(px, py, 2, false);
+var particle_offset = 30;
+var time = current_time * 0.002;
+
+for (var i = 0; i < 80; i++) { // Tambah jumlah partikel
+    // Posisi dengan gerakan halus
+    var px = room_width/2 + sin(time + i) * 200 + cos(time * 0.6 + i) * 50 + particle_offset;
+    var py = room_height/2 + cos(time * 0.8 + i) * 90 + sin(time * 1.2 + i) * 40;
+    
+    // Ukuran partikel lebih besar (5-8 pixel)
+    var size = 2 + sin(time * 2 + i) * 1.5;
+    
+    // Alpha lebih tebal (0.4 - 0.7)
+    draw_set_alpha(0.20 + sin(time * 2.5 + i) * 0.15);
+    
+    // Gambar partikel dengan fill (biar tebal)
+    draw_circle(px, py, size, true);
+    
+    // Tambah outline biar makin tegas
+    draw_set_alpha(0.7);
+    draw_circle(px, py, size + 1, false);
 }
+
 draw_set_alpha(1);
 
 // ========================
 // 4. JUDUL UTAMA
 // ========================
 var title = "BEYOND EARTH";
+var title_offset = 30; // Geser ke kanan
 
+draw_set_font(fnt_main);
 draw_set_color(c_black);
 draw_set_alpha(0.5);
-draw_text_transformed(room_width/2 + 5, 165, title, 2.2, 2.2, 0);
+draw_text_transformed(room_width/2 + 5 + title_offset, 165, title, 2, 2, 0);
 
 draw_set_alpha(1);
 draw_set_color(c_aqua);
-draw_text_transformed(room_width/2, 160, title, 2.2, 2.2, 0);
+draw_text_transformed(room_width/2 + title_offset, 160, title, 2, 2, 0);
 
 // ========================
 // 5. SUB JUDUL
 // ========================
+draw_set_font(font_default);
 draw_set_color(c_white);
 draw_set_alpha(0.9);
-draw_text(room_width/2, 240, "GOOD GUARDIAN");
+draw_text(room_width/2 + title_offset, 240, "GOOD GUARDIAN");
 
 draw_set_color(c_yellow);
 draw_set_alpha(0.5);
-draw_line(room_width/2 - 80, 255, room_width/2 + 80, 255);
+draw_line(room_width/2 - 80 + title_offset, 255, room_width/2 + 80 + title_offset, 255);
 
 
 
@@ -79,3 +98,4 @@ draw_set_alpha(1);
 draw_set_color(c_white);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
+draw_set_font(-1);

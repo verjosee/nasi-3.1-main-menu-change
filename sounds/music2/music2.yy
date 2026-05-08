@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"music2",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":73.84816,
+  "exportDir":"",
+  "name":"music2",
+  "parent":{
+    "name":"music",
+    "path":"folders/sound/music.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"music2.mp3",
+  "volume":1.0,
+}

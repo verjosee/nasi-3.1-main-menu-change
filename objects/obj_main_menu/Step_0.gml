@@ -12,3 +12,8 @@ for (var i = 0; i < 200; i++) {
     bintang_alpha[i] += random_range(-0.01, 0.01);
     bintang_alpha[i] = clamp(bintang_alpha[i], 0.15, 1);
 }
+
+// F11 Fullscreen
+if (keyboard_check_pressed(vk_f11)) {
+    window_set_fullscreen(!window_get_fullscreen());
+}

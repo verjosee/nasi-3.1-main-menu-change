@@ -37,5 +37,6 @@ if (hp_chance < hp_3_chance) {
 } else {
     meteor.hp = 1;
 }
+meteor.max_hp = meteor.hp;
 
 alarm[0] = spawn_rate;

@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"shoot",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.8750113,
+  "exportDir":"",
+  "name":"shoot",
+  "parent":{
+    "name":"audio",
+    "path":"folders/sound/audio.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"shoot.wav",
+  "volume":0.23,
+}

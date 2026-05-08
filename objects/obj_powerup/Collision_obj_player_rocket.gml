@@ -1,8 +1,8 @@
 if (type == "shield") {
     obj_player_rocket.shield_active = true;
-    obj_player_rocket.shield_timer = 480;
+    obj_player_rocket.shield_timer = 480;  // 8 detik
     obj_player_rocket.invincible = true;
-    obj_player_rocket.invincible_timer = 480;
+    obj_player_rocket.invincible_timer = 480;  // 8 detik invincibility
 } 
 else if (type == "fastup") {
     obj_player_rocket.fastup_active = true;
@@ -20,6 +20,11 @@ else if (type == "health") {
 }
 
 else if (type == "wingman") {
+    // Set player wingman variables
+    obj_player_rocket.wingman_active = true;
+    obj_player_rocket.wingman_timer = 600;  // 10 detik
+    obj_player_rocket.wingman_spawned = false;
+    
     // Spawn 2 Wingman: 1 atas, 1 bawah
     var top = instance_create_layer(0, 0, "Instances", obj_wingman);
     var bottom = instance_create_layer(0, 0, "Instances", obj_wingman);

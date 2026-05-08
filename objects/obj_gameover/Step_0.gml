@@ -24,3 +24,8 @@ if (keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)) {
 if (keyboard_check_pressed(vk_escape)) {
     game_end();
 }
+
+// ========== F11 FULLSCREEN ==========
+if (keyboard_check_pressed(vk_f11)) {
+    window_set_fullscreen(!window_get_fullscreen());
+}

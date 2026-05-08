@@ -4,80 +4,100 @@
 rotation += rotation_speed;
 image_angle = rotation;
 
+// Wrap rotation angle (opsional, mencegah overflow)
+if (rotation > 360) rotation -= 360;
+if (rotation < 0) rotation += 360;
+
 // Move meteor
 x += lengthdir_x(speed, direction);
 y += lengthdir_y(speed, direction);
 
-// Destroy meteor when it goes off-screen (left side OR right side)
+// Destroy meteor when it goes off-screen
 if (x < -200 || x > room_width + 500 || y < -200 || y > room_height + 200) {
     instance_destroy();
 }
 
-// Check collision with player bullets
-if (place_meeting(x, y, obj_bullet)) {
-    var bullet = instance_place(x, y, obj_bullet);
-    if (bullet != noone) {  // ← tambahkan validasi
-        hp--;
+// === CHECK COLLISION WITH PLAYER BULLETS ===
+var bullet = instance_place(x, y, obj_bullet);
+if (bullet != noone) {
+    hp--;
+    
+    instance_create_layer(bullet.x, bullet.y, "Instances", obj_bullet_trail);
+    instance_destroy(bullet);
+    
+    if (hp > 0) {
+        // UPDATE SCALE menggunakan function terpusat
+        update_meteor_scale();
         
-        // Create hit effect
-        instance_create_layer(bullet.x, bullet.y, "Instances", obj_bullet_trail);
+        image_blend = c_white;
+        alarm[0] = 2;
+    }
+    else {
+        global.score += score_value;
+        effect_create_above(ef_explosion, x, y, 2, c_orange);
         
-        // Destroy bullet
-        instance_destroy(bullet);
+        if (audio_exists(explode) && !audio_is_playing(explode)) {
+            audio_play_sound(explode, 1, false);
+        }
         
-        // Check if meteor is destroyed
-        if (hp <= 0) {
-            // Add score
-            global.score += score_value;
+        if (irandom(99) < 30) {
+            var pu = instance_create_layer(x, y, "Instances", obj_powerup);
+            var rand = irandom(99);
             
-            // Create explosion effect
-            effect_create_above(ef_explosion, x, y, 2, c_orange);
-            
-            // === SPAWN POWER-UP (35% chance) ===
-            if (irandom(99) < 35) {
-                var pu = instance_create_layer(x, y, "Instances", obj_powerup);
-                
-                var rand = irandom(99);
-                
-                if (rand < 35) {
-                    pu.type = "shield";
-                }
-                else if (rand < 60) {
-                    pu.type = "fastup";
-                }
-                else if (rand < 80) {
-                    pu.type = "health";
-                }
-                else {
-                    pu.type = "wingman";
-                }
-                
-                // Set sprite based on type
-                if (pu.type == "shield")      pu.sprite_index = spr_powerup_shield;
-                else if (pu.type == "fastup") pu.sprite_index = spr_powerup_fastup;
-                else if (pu.type == "health") pu.sprite_index = spr_powerup_health;
-                else if (pu.type == "wingman") pu.sprite_index = spr_powerup_wingman;
+            if (rand < 35) {
+                pu.type = "shield";
+                pu.sprite_index = spr_powerup_shield;
             }
-            
-            // Destroy meteor
-            instance_destroy();
+            else if (rand < 60) {
+                pu.type = "fastup";
+                pu.sprite_index = spr_powerup_fastup;
+            }
+            else if (rand < 80) {
+                pu.type = "health";
+                pu.sprite_index = spr_powerup_health;
+            }
+            else {
+                pu.type = "wingman";
+                pu.sprite_index = spr_powerup_wingman;
+            }
+        }
+        
+        instance_destroy();
+    }
+}
+
+// === CHECK COLLISION WITH PLAYER ===
+if (place_meeting(x, y, obj_player_rocket)) {
+    var player = obj_player_rocket;
+    
+    // Cek shield & invincible
+    if (player.shield_active || player.invincible) {
+        // Shield atau invincible aktif - meteor hancur, player aman
+        effect_create_above(ef_explosion, x, y, 2, c_blue);
+        audio_play_sound(explode, 1, false);
+        instance_destroy();
+    }
+    else if (!player.invincible) {
+        // Player kena damage
+        global.lives--;
+        
+        effect_create_above(ef_explosion, x, y, 2, c_red);
+        audio_play_sound(explode, 1, false);
+        
+        // Activate invincibility frames untuk player
+        player.invincible = true;
+        player.invincible_timer = 90;
+        
+        // Flash effect untuk player
+        player.image_blend = c_red;
+        
+        instance_destroy();
+        
+        // Check game over
+        if (global.lives <= 0) {
+            global.level_time_left = -1;
         }
     }
 }
 
-// Check collision with player
-if (place_meeting(x, y, obj_player_rocket)) {
-    // Damage player
-    global.lives--;
-    
-    // Create explosion effect
-    effect_create_above(ef_explosion, x, y, 2, c_red);
-    
-    // Destroy meteor
-    instance_destroy();
-    
-    // Check game over
-    if (global.lives <= 0) {
-        global.level_time_left = -1;
-    }
-}
+

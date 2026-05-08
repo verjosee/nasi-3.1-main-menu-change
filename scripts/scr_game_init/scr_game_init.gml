@@ -90,5 +90,14 @@ function init_global_variables() {
         global.prev_room = room_menu;
     }
     
+    // Audio volume settings
+    if (!variable_global_exists("music_volume")) {
+        global.music_volume = 0.7;
+    }
+    
+    if (!variable_global_exists("sfx_volume")) {
+        global.sfx_volume = 0.7;
+    }
+    
     show_debug_message("All global variables initialized");
 }
