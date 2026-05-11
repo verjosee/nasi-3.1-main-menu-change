@@ -1,8 +1,11 @@
 /// STEP EVENT - obj_pause (dengan mouse)
 
+/// STEP EVENT - obj_pause (dengan mouse)
+
 // ESC handler - simpel, hanya toggle pause
 if (keyboard_check_pressed(vk_escape)) {
     paused = !paused;
+    global.paused = paused;
     if (paused) {
         menu_page = "pause";
         selected = 0;
@@ -34,18 +37,28 @@ if (paused) {
                 if (mouse_check_button_pressed(mb_left)) {
                     if (i == 0) { 
                         paused = false; 
-                        instance_activate_all(); 
+                        global.paused = false;
+                        instance_activate_all();
+                        // Reset spawner alarm untuk spawn cepat
+                        with (obj_spawner) alarm[0] = 1;
                     }
                     if (i == 1) { 
                         instance_activate_all();
                         global.prev_room = room;   // Simpan room saat ini
+                        global.was_paused = paused;  // Simpan status pause
                         room_persistent = true;    // Biar tidak restart saat balik
                         room_goto(room_settings);
                     }
                     if (i == 2) { 
                         instance_activate_all(); 
                         room_persistent = false; // Reset persistence
-                        game_restart(); 
+                        var target_room_name = "room_level" + string(global.current_level);
+                        var target_room = asset_get_index(target_room_name);
+                        if (room_exists(target_room)) {
+                            room_goto(target_room);
+                        } else {
+                            game_restart(); // Fallback jika room tidak ada
+                        }
                     }
                     if (i == 3) { 
                         instance_activate_all();
@@ -75,17 +88,30 @@ if (paused) {
         }
         
         if (keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)) {
-            if (selected == 0) { paused = false; instance_activate_all(); }
+            if (selected == 0) { 
+                paused = false; 
+                global.paused = false;
+                instance_activate_all();
+                // Reset spawner alarm untuk spawn cepat
+                with (obj_spawner) alarm[0] = 1;
+            }
             if (selected == 1) { 
                 instance_activate_all();
                 global.prev_room = room;
+                global.was_paused = paused;  // Simpan status pause
                 room_persistent = true;
                 room_goto(room_settings);
             }
             if (selected == 2) { 
                 instance_activate_all(); 
                 room_persistent = false;
-                game_restart(); 
+                var target_room_name = "room_level" + string(global.current_level);
+                var target_room = asset_get_index(target_room_name);
+                if (room_exists(target_room)) {
+                    room_goto(target_room);
+                } else {
+                    game_restart(); // Fallback jika room tidak ada
+                }
             }
             if (selected == 3) { 
                 instance_activate_all();
@@ -102,6 +128,13 @@ for (var i = 0; i < 150; i++) {
     bintang_alpha[i] += 0.005 * (irandom(2) - 1);
     if (bintang_alpha[i] > 0.9) bintang_alpha[i] = 0.9;
     if (bintang_alpha[i] < 0.2) bintang_alpha[i] = 0.2;
+}
+
+// Fade effect
+if (paused) {
+    fade_alpha = min(1, fade_alpha + 0.05);
+} else {
+    fade_alpha = max(0, fade_alpha - 0.05);
 }
 
 // F11 Fullscreen

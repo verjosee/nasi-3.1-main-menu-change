@@ -10,8 +10,8 @@
   "name":"obj_loading_screen",
   "overriddenProperties":[],
   "parent":{
-    "name":"nasi 3.1 main menu change",
-    "path":"nasi 3.1 main menu change.yyp",
+    "name":"obj",
+    "path":"folders/obj.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_loading_screen",
-    "path":"sprites/spr_loading_screen/spr_loading_screen.yy",
+    "name":"spr_loading_screen_2",
+    "path":"sprites/spr_loading_screen_2/spr_loading_screen_2.yy",
   },
   "spriteMaskId":null,
   "visible":true,

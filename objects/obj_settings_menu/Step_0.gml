@@ -44,6 +44,13 @@ if (point_in_rect(mx, my, back_x1, back_y_bottom - back_h * 0.5, back_x2, back_y
         audio_sound_gain(snd, global.sfx_volume);
         save_settings_file();
         
+        // Stop musik settings dan mainkan musik game jika ada
+        audio_stop_all();
+        if (variable_global_exists("current_music") && audio_exists(global.current_music)) {
+            audio_play_sound(global.current_music, 1, true);
+            audio_sound_gain(global.current_music, global.music_volume);
+        }
+        
         if (variable_global_exists("prev_room") && room_exists(global.prev_room)) {
             room_goto(global.prev_room);
         } else {
@@ -55,6 +62,14 @@ if (point_in_rect(mx, my, back_x1, back_y_bottom - back_h * 0.5, back_x2, back_y
 // Tombol ESC
 if (keyboard_check_pressed(vk_escape)) {
     save_settings_file();
+    
+    // Stop musik settings dan mainkan musik game jika ada
+    audio_stop_all();
+    if (variable_global_exists("current_music") && audio_exists(global.current_music)) {
+        audio_play_sound(global.current_music, 1, true);
+        audio_sound_gain(global.current_music, global.music_volume);
+    }
+    
     if (variable_global_exists("prev_room") && room_exists(global.prev_room)) {
         room_goto(global.prev_room);
     } else {

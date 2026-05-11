@@ -24,6 +24,7 @@ draw_rectangle(0, 0, gw, gh, false);
 draw_set_alpha(ui_alpha);
 
 // ========== JUDUL (WIN/LOSE) ==========
+draw_set_font(fnt_main);
 var title_scale = 2.5 + sin(ui_timer * 0.08) * 0.05;
 var title_text = (level_status == "WIN") ? "LEVEL COMPLETE" : "GAME OVER";
 var title_color = (level_status == "WIN") ? c_lime : c_red;
@@ -43,6 +44,7 @@ draw_set_color(c_white);
 draw_set_alpha(0.7 * ui_alpha);
 draw_line(gw/2 - 180, gh/2 - 80, gw/2 + 180, gh/2 - 80);
 draw_set_alpha(ui_alpha);
+draw_set_font(font_default);
 
 // ========== PANEL INFO ==========
 var panel_y = gh/2 - 20;
@@ -75,10 +77,10 @@ if (variable_global_exists("current_level")) {
 // ========== PESAN STATUS ==========
 if (level_status == "WIN") {
     draw_set_color(c_lime);
-    draw_text_transformed(gw/2, gh/2 + 200, "★ LEVEL SOLVED! ★", 1.2, 1.2, 0);
+    draw_text_transformed(gw/2, gh/2 + 200, " LEVEL SOLVED! ", 1.2, 1.2, 0);
 } else {
     draw_set_color(c_red);
-    draw_text_transformed(gw/2, gh/2 + 200, "✗ YOU DIED ✗", 1.2, 1.2, 0);
+    draw_text_transformed(gw/2, gh/2 + 200, " YOU DIED ", 1.2, 1.2, 0);
 }
 
 // ========== PETUNJUK ==========

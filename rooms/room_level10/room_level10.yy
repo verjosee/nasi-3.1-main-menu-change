@@ -15,9 +15,6 @@
     {"name":"inst_7205ACCE10","path":"rooms/room_level10/room_level10.yy",},
     {"name":"inst_687F7376_10","path":"rooms/room_level10/room_level10.yy",},
     {"name":"inst_7082FE810","path":"rooms/room_level10/room_level10.yy",},
-    {"name":"inst_2F60AC1E","path":"roomui/RoomUI/RoomUI.yy",},
-    {"name":"inst_4285C9C6","path":"roomui/RoomUI/RoomUI.yy",},
-    {"name":"inst_51D46285","path":"roomui/RoomUI/RoomUI.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -39,8 +36,8 @@
   ],
   "name":"room_level10",
   "parent":{
-    "name":"nasi 3.1 main menu change",
-    "path":"nasi 3.1 main menu change.yyp",
+    "name":"room",
+    "path":"folders/room.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

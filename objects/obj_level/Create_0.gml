@@ -21,6 +21,7 @@ if (audio_exists(sound_index)) {
     audio_play_sound(sound_index, 1, true); // Loop the background music
     var vol = variable_global_exists("music_volume") ? global.music_volume : 0.7;
     audio_sound_gain(sound_index, vol);
+    global.current_music = sound_index; // Simpan musik saat ini
 }
 
 spawn_rate = 45;

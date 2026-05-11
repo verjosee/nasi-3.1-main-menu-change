@@ -1,6 +1,7 @@
 /// DRAW GUI EVENT
 
 if (paused == false) exit;
+draw_set_font(font_default);
 
 // ========================
 // 1. BACKGROUND GRADIEN (sama seperti main menu)
@@ -34,28 +35,31 @@ draw_set_alpha(1);
 // 3. OVERLAY GELAP (biar teks mudah dibaca)
 // ========================
 draw_set_color(c_black);
-draw_set_alpha(0.7);
+draw_set_alpha(fade_alpha * 0.7);
 draw_rectangle(0, 0, room_width, room_height, false);
 draw_set_alpha(1);
 
 // ========================
 // 4. MENU PAUSE
 // ========================
+draw_set_font(font_default);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
 if (menu_page == "pause") {
     // ===== JUDUL DENGAN EFEK NEON =====
-    // Bayangan
-    draw_set_color(c_black);
-    draw_set_alpha(0.6);
-    draw_text_transformed(room_width/2 + 5, 155, "PAUSED", 2.2, 2.2, 0);
-    
-    // Teks utama
-    draw_set_alpha(1);
-    draw_set_color(c_aqua);
-    draw_text_transformed(room_width/2, 150, "PAUSED", 2.2, 2.2, 0);
-    
+draw_set_font(fnt_main);
+// Bayangan
+draw_set_color(c_black);
+draw_set_alpha(0.6);
+draw_text_transformed(room_width/2 + 5, 155, "PAUSED", 2.2, 2.2, 0);
+
+// Teks utama
+draw_set_alpha(1);
+draw_set_color(c_aqua);
+draw_text_transformed(room_width/2, 150, "PAUSED", 2.2, 2.2, 0);
+
+draw_set_font(font_default);
     // Garis bawah neon
     draw_set_color(c_white);
     draw_set_alpha(0.7);
@@ -106,11 +110,7 @@ if (menu_page == "pause") {
         draw_text(room_width/2, menu_y_start + menu_spacing * 3, "QUIT");
     }
     
-    // ===== PESAN BAWAH =====
-    draw_set_color(c_ltgray);
-    draw_set_alpha(0.7 + 0.3 * sin(current_time * 0.003));
-    draw_text(room_width/2, room_height - 100, "Use Arrow Keys or Mouse to Navigate");
-    draw_text(room_width/2, room_height - 70, "Press ESC to Resume");
+
 }
 
 // ========================
@@ -119,3 +119,4 @@ if (menu_page == "pause") {
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
+draw_set_font(-1);

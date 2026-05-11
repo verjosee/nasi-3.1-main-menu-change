@@ -4,8 +4,8 @@
 if (instance_exists(obj_player_rocket)) {
     orbit_angle += orbit_speed;
     
-    var center_x = obj_player_rocket.x + 25;
-    var center_y = obj_player_rocket.y + 74;
+    var center_x = obj_player_rocket.x - 20;
+    var center_y = obj_player_rocket.y + 0;
     
     x = center_x + lengthdir_x(orbit_radius, orbit_angle);
     y = center_y + lengthdir_y(orbit_radius, orbit_angle);
@@ -30,13 +30,3 @@ if (timer >= 22) {
 // Durasi wingman
 lifespan -= 1;
 if (lifespan <= 0) instance_destroy();
-
-
-/// CREATE EVENT - obj_cheat (tambahkan ini)
-
-// ... kode yang sudah ada ...
-
-// Untuk tracking status di step (tanpa current_time)
-frame_counter = 0;
-
-show_debug_message("Cheat system initialized - Debug Mode: OFF");

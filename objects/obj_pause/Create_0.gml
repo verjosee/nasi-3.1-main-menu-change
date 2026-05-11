@@ -1,6 +1,17 @@
 /// CREATE EVENT
 
+global.paused = false;
 paused = false;
+
+// Jika kembali dari settings dan sebelumnya paused
+if (variable_global_exists("was_paused") && global.was_paused) {
+    paused = true;
+    global.paused = true;
+    instance_deactivate_all(true);
+}
+global.was_paused = false;  // Reset
+
+fade_alpha = 0;
 selected = 0;
 menu_page = "pause";  // "pause" atau "settings"
 

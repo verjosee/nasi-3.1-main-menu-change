@@ -19,8 +19,8 @@
   "locked":false,
   "name":"RoomUI",
   "parent":{
-    "name":"nasi 3.1 main menu change",
-    "path":"nasi 3.1 main menu change.yyp",
+    "name":"nasi 4 final",
+    "path":"nasi 4 final.yyp",
   },
   "resourceType":"GMRoomUI",
   "resourceVersion":"2.0",

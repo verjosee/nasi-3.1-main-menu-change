@@ -1,5 +1,5 @@
 function ensure_level_arrays() {
-    var total_levels = 10;
+    var total_levels = 20;  // CHANGE THIS FROM 10 TO 20
 
     if (!variable_global_exists("level_unlocked")) {
         global.level_unlocked = array_create(total_levels, false);
@@ -8,7 +8,7 @@ function ensure_level_arrays() {
         global.level_completed = array_create(total_levels, false);
     }
     if (!variable_global_exists("level_highscores")) {
-        global.level_highscores = array_create(total_levels, 0);
+        global.level_highscores = array_create(total_levels, 0);  // Also 20 for highscores
     }
 
     if (array_length(global.level_unlocked) < total_levels) {
@@ -32,7 +32,7 @@ function ensure_level_arrays() {
 
 function get_current_level_index() {
     if (!variable_global_exists("current_level")) return 0;
-    return clamp(global.current_level - 1, 0, 9);
+    return clamp(global.current_level - 1, 0, 19);  // CHANGE FROM 9 TO 19
 }
 
 // Save High Score per level
@@ -40,7 +40,7 @@ function save_highscore() {
     ensure_level_arrays();
 
     var map = ds_map_create();
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 20; i++) {  // CHANGE FROM 10 TO 20
         ds_map_add(map, "level_" + string(i + 1), global.level_highscores[i]);
     }
 
@@ -61,7 +61,7 @@ function load_highscore() {
         file_text_close(file);
 
         var map = json_decode(json_str);
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 20; i++) {  // CHANGE FROM 10 TO 20
             var key = "level_" + string(i + 1);
             if (ds_map_exists(map, key)) {
                 global.level_highscores[i] = max(0, ds_map_find_value(map, key));
@@ -92,7 +92,7 @@ function update_highscore_for_current_level(_score) {
 
 function reset_all_level_highscores() {
     ensure_level_arrays();
-    for (var i = 0; i < 10; i++) global.level_highscores[i] = 0;
+    for (var i = 0; i < 20; i++) global.level_highscores[i] = 0;  // CHANGE FROM 10 TO 20
     save_highscore();
     sync_current_level_highscore();
 }
@@ -102,7 +102,7 @@ function save_level_progress() {
     ensure_level_arrays();
 
     var map = ds_map_create();
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 20; i++) {  // THIS WAS ALREADY CORRECT (20)
         ds_map_add(map, "unlock_" + string(i), global.level_unlocked[i]);
         ds_map_add(map, "complete_" + string(i), global.level_completed[i]);
     }
@@ -125,7 +125,7 @@ function load_level_progress() {
         file_text_close(file);
 
         var map = json_decode(json_str);
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 20; i++) {  // THIS WAS ALREADY CORRECT (20)
             var unlock_key = "unlock_" + string(i);
             var complete_key = "complete_" + string(i);
             if (ds_map_exists(map, unlock_key)) global.level_unlocked[i] = ds_map_find_value(map, unlock_key);
@@ -139,7 +139,7 @@ function load_level_progress() {
 
 function reset_level_progress() {
     ensure_level_arrays();
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 20; i++) {  // THIS WAS ALREADY CORRECT (20)
         global.level_unlocked[i] = (i == 0);
         global.level_completed[i] = false;
     }
@@ -148,6 +148,6 @@ function reset_level_progress() {
 
 function unlock_all_levels_debug() {
     ensure_level_arrays();
-    for (var i = 0; i < 10; i++) global.level_unlocked[i] = true;
+    for (var i = 0; i < 20; i++) global.level_unlocked[i] = true;  // THIS WAS ALREADY CORRECT (20)
     save_level_progress();
 }

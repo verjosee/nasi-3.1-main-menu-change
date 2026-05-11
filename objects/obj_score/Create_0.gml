@@ -1,4 +1,4 @@
-// Inisialisasi Score & High Score
+// Inisialisasi Score &		
 if (!variable_global_exists("score")) global.score = 0;
 if (!variable_global_exists("highscore")) global.highscore = 0;
 

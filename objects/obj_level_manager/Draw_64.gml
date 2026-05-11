@@ -42,6 +42,7 @@ draw_set_alpha(1);
 // ========================
 // JUDUL
 // ========================
+draw_set_font(fnt_main);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
@@ -54,6 +55,8 @@ draw_text_transformed(room_width/2 + 4, 64, "SELECT YOUR DESTINY", 1.2, 1.2, 0);
 draw_set_alpha(1);
 draw_set_color(c_aqua);
 draw_text_transformed(room_width/2, 60, "SELECT YOUR DESTINY", 1.2, 1.2, 0);
+
+draw_set_font(font_default);
 
 // Garis dekorasi
 draw_set_color(c_yellow);

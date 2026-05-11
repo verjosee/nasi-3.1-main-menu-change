@@ -20,7 +20,8 @@ else {
     effect_create_above(ef_explosion, x, y, 1.8, c_orange);
     
     // Play explode sound
-    audio_play_sound(explode, 1, false);
+    var snd = audio_play_sound(explode, 1, false);
+    audio_sound_gain(snd, variable_global_exists("sfx_volume") ? global.sfx_volume : 0.8);
     
     // === SPAWN POWER-UP (30% chance) ===
     if (irandom(99) < 30) {

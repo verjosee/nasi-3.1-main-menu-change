@@ -10,8 +10,8 @@
   "name":"obj_level_timer",
   "overriddenProperties":[],
   "parent":{
-    "name":"nasi 3.1 main menu change",
-    "path":"nasi 3.1 main menu change.yyp",
+    "name":"obj",
+    "path":"folders/obj.yy",
   },
   "parentObjectId":null,
   "persistent":false,

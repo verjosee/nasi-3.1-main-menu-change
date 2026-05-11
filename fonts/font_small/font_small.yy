@@ -208,8 +208,8 @@
   "maintainGms1Font":false,
   "name":"font_small",
   "parent":{
-    "name":"nasi 3.1 main menu change",
-    "path":"nasi 3.1 main menu change.yyp",
+    "name":"font",
+    "path":"folders/font.yy",
   },
   "pointRounding":0,
   "ranges":[

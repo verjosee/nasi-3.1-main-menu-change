@@ -47,16 +47,16 @@ if (script_exists(asset_get_index("init_global_variables"))) {
 }
 
 // ========================
-// INITIALIZE LEVEL UNLOCK SYSTEM (UKURAN 10)
+// INITIALIZE LEVEL UNLOCK SYSTEM (UKURAN 20)
 // ========================
 if (!variable_global_exists("level_unlocked")) {
-    global.level_unlocked = array_create(10);
+    global.level_unlocked = array_create(20);
     global.level_unlocked[0] = true;
-    for (var i = 1; i < 10; i++) global.level_unlocked[i] = false;
+    for (var i = 1; i < 20; i++) global.level_unlocked[i] = false;
 }
 if (!variable_global_exists("level_completed")) {
-    global.level_completed = array_create(10);
-    for (var i = 0; i < 10; i++) global.level_completed[i] = false;
+    global.level_completed = array_create(20);
+    for (var i = 0; i < 20; i++) global.level_completed[i] = false;
 }
 
 // Load progress dari file
@@ -71,7 +71,6 @@ if (script_exists(asset_get_index("load_highscore"))) {
 menu_intro_timer = 0;
 menu_intro_alpha = 0;
 title_pulse = 1;
-
 // ===== FLEX UI SYSTEM =====
 // Gunakan margin dan padding untuk layout yang responsif
 var center_x = room_width / 2;
@@ -79,14 +78,20 @@ var center_y = room_height / 2;
 
 // Konfigurasi flex layout
 var button_width = 110;  // Perkiraan lebar tombol
-var button_spacing = 45;  // Jarak antar tombol (lebarin lagi)
+var button_spacing = 45;  // Jarak antar tombol
 var total_height = (3 * button_width * 0.7) + (2 * button_spacing); // Tinggi total semua tombol
-var start_y = center_y - (total_height / 2); // Mulai tepat di tengah
 
-// Posisi tombol dengan flex layout (vertical center)
+// **PERUBAHAN: Geser semua tombol ke bawah dengan offset**
+var y_offset = 80; // Tambahan offset ke bawah (silahkan sesuaikan)
+var start_y = center_y - (total_height / 2) + y_offset; // Mulai dari tengah + offset ke bawah
+
+// Posisi tombol dengan flex layout (vertical center + offset)
 var play_y = start_y;
 var setting_y = start_y + (button_width * 0.7) + button_spacing;
 var quit_y = setting_y + (button_width * 0.7) + button_spacing;
+
+// Tambahan: Jika ingin tombol lebih turun lagi, bisa pakai persentase layar
+// Contoh alternatif: var start_y = room_height * 0.55; (55% dari tinggi layar)
 
 // ========================
 // 0. SETUP BUTTONS (Respect existing instances if any)

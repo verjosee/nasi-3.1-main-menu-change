@@ -37,8 +37,10 @@ for (var i = 0; i < 30; i++) {
 draw_set_alpha(1);
 
 // Judul
+draw_set_font(fnt_main);
 draw_set_color(c_aqua);
 draw_text_transformed(room_width/2, 60, "Level Select", 1.25, 1.25, 0);
+draw_set_font(font_default);
 
 draw_set_color(c_yellow);
 draw_set_alpha(0.6);
@@ -154,7 +156,7 @@ if (variable_global_exists("level_highscores") && array_length(global.level_high
     draw_set_halign(fa_right);
     draw_set_valign(fa_top);
     draw_set_color(c_yellow);
-    draw_text_transformed(room_width - 30, 30, "HIGHSCORE LV " + string(selected_level + 1) + ": " + string(global.level_highscores[selected_level]), 0.85, 0.85, 0);
+    draw_text_transformed(room_width - 70, 30, "HIGHSCORE LV " + string(selected_level + 1) + ": " + string(global.level_highscores[selected_level]), 0.85, 0.85, 0);
 }
 
 // Reset alignment

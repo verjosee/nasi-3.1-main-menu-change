@@ -65,7 +65,7 @@ draw_set_alpha(1);
 // ========================
 // 4. JUDUL UTAMA
 // ========================
-var title = "BEYOND EARTH";
+var title = " ";
 var title_offset = 30; // Geser ke kanan
 
 draw_set_font(fnt_main);
@@ -83,11 +83,8 @@ draw_text_transformed(room_width/2 + title_offset, 160, title, 2, 2, 0);
 draw_set_font(font_default);
 draw_set_color(c_white);
 draw_set_alpha(0.9);
-draw_text(room_width/2 + title_offset, 240, "GOOD GUARDIAN");
+draw_text(room_width/2 + title_offset, 300, "GOOD GUARDIAN");
 
-draw_set_color(c_yellow);
-draw_set_alpha(0.5);
-draw_line(room_width/2 - 80 + title_offset, 255, room_width/2 + 80 + title_offset, 255);
 
 
 

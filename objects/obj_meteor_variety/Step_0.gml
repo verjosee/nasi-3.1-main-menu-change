@@ -37,7 +37,8 @@ if (bullet != noone) {
         effect_create_above(ef_explosion, x, y, 2, c_orange);
         
         if (audio_exists(explode) && !audio_is_playing(explode)) {
-            audio_play_sound(explode, 1, false);
+            var snd = audio_play_sound(explode, 1, false);
+            audio_sound_gain(snd, variable_global_exists("sfx_volume") ? global.sfx_volume : 0.8);
         }
         
         if (irandom(99) < 30) {
@@ -74,7 +75,8 @@ if (place_meeting(x, y, obj_player_rocket)) {
     if (player.shield_active || player.invincible) {
         // Shield atau invincible aktif - meteor hancur, player aman
         effect_create_above(ef_explosion, x, y, 2, c_blue);
-        audio_play_sound(explode, 1, false);
+        var snd = audio_play_sound(explode, 1, false);
+        audio_sound_gain(snd, variable_global_exists("sfx_volume") ? global.sfx_volume : 0.8);
         instance_destroy();
     }
     else if (!player.invincible) {
@@ -82,20 +84,19 @@ if (place_meeting(x, y, obj_player_rocket)) {
         global.lives--;
         
         effect_create_above(ef_explosion, x, y, 2, c_red);
-        audio_play_sound(explode, 1, false);
+        var snd = audio_play_sound(explode, 1, false);
+        audio_sound_gain(snd, variable_global_exists("sfx_volume") ? global.sfx_volume : 0.8);
         
         // Activate invincibility frames untuk player
         player.invincible = true;
         player.invincible_timer = 90;
         
-        // Flash effect untuk player
-        player.image_blend = c_red;
-        
         instance_destroy();
         
-        // Check game over
         if (global.lives <= 0) {
-            global.level_time_left = -1;
+            with (obj_player_rocket) { is_exploding = true; explosion_timer = 120; }
+            global.level_time_left = -3;
+            if (instance_exists(obj_level_manager)) with (obj_level_manager) wave_active = false;
         }
     }
 }

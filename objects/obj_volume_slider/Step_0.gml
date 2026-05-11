@@ -22,9 +22,8 @@ if (dragging) {
             audio_sound_gain(snd, global.sfx_volume);
         }
         
-        // Update rotation based on sliding speed
-        rotation_speed = slide_speed * 5;
-        rotation += rotation_speed;
+        // Update rotation based on sliding speed (capped so it doesn't spin like crazy)
+        rotation_speed = min(slide_speed * 2, 8);
         
         // Update global volume based on slider type
         if (slider_type == "music") {
@@ -52,6 +51,7 @@ if (dragging) {
 
 // Apply rotation
 rotation += rotation_speed;
+rotation = rotation % 360;
 
 // Update cursor
 if (hover) {

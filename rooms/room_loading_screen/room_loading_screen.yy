@@ -7,6 +7,9 @@
   "inheritLayers":false,
   "instanceCreationOrder":[
     {"name":"inst_2BB7591","path":"rooms/room_loading_screen/room_loading_screen.yy",},
+    {"name":"inst_2F60AC1E","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_4285C9C6","path":"roomui/RoomUI/RoomUI.yy",},
+    {"name":"inst_51D46285","path":"roomui/RoomUI/RoomUI.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -19,8 +22,8 @@
   ],
   "name":"room_loading_screen",
   "parent":{
-    "name":"nasi 3.1 main menu change",
-    "path":"nasi 3.1 main menu change.yyp",
+    "name":"room",
+    "path":"folders/room.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

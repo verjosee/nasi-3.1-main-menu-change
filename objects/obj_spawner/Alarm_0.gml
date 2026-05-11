@@ -1,7 +1,7 @@
 /// Alarm 0 - Meteor Spawner
 
-if (!instance_exists(obj_level)) {
-    alarm[0] = 30;
+if (global.paused) {
+    alarm[0] = 30; // Reset alarm
     exit;
 }
 

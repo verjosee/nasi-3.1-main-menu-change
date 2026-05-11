@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"collect",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.5052154,
+  "exportDir":"",
+  "name":"collect",
+  "parent":{
+    "name":"audio",
+    "path":"folders/sound/audio.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"collect.wav",
+  "volume":0.8,
+}

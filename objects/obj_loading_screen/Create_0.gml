@@ -10,4 +10,5 @@ total_frames = 400;    // Total frames for full loading (7.3 detik)
 
 // Play intro music
 audio_stop_all();
-audio_play_sound(intro, 1, false);
+var snd = audio_play_sound(intro, 1, false);
+audio_sound_gain(snd, variable_global_exists("music_volume") ? global.music_volume : 0.7);

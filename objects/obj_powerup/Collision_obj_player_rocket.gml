@@ -35,4 +35,8 @@ else if (type == "wingman") {
     show_debug_message("WINGMAN AKTIF - 1 Atas + 1 Bawah");
 }
 
+if (audio_exists(collect)) {
+    var snd = audio_play_sound(collect, 1, false);
+    audio_sound_gain(snd, variable_global_exists("sfx_volume") ? global.sfx_volume : 0.8);
+}
 instance_destroy();

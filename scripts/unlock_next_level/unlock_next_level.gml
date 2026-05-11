@@ -15,15 +15,15 @@ if (!variable_global_exists("level_unlocked")) {
 var completed_level = global.current_level;
 var next_level = completed_level; // index array mulai 0
 
-// Pastikan next_level dalam batas yang valid (0-9 untuk 10 level)
-if (next_level >= 0 && next_level < 10) {
+// Pastikan next_level dalam batas yang valid (0-19 untuk 20 level)
+if (next_level >= 0 && next_level < 20) {
     // Unlock level berikutnya jika belum terbuka
-    if (next_level < 9 && !global.level_unlocked[next_level + 1]) {
+    if (next_level < 19 && !global.level_unlocked[next_level + 1]) {
         global.level_unlocked[next_level + 1] = true;
         
         // Simpan progress
         var file = file_text_open_write("level_progress.sav");
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 20; i++) {
             file_text_write_real(file, global.level_unlocked[i]);
         }
         file_text_close(file);

@@ -29,11 +29,12 @@ draw_set_alpha(ui_alpha);
 
 // Tutorial text based on step
 draw_set_color(c_white);
-draw_set_font(font_default);
+draw_set_font(fnt_main);
 
 switch (tutorial_step) {
     case 0: // Movement
         draw_text_transformed(room_width/2, panel_y + 50, "TUTORIAL: MOVEMENT", 1.5, 1.5, 0);
+        draw_set_font(font_default);
         draw_set_color(c_yellow);
         draw_text(room_width/2, panel_y + 100, "Use WASD or Arrow Keys to move");
         draw_set_color(c_ltgray);
@@ -42,6 +43,7 @@ switch (tutorial_step) {
         
     case 1: // Shooting
         draw_text_transformed(room_width/2, panel_y + 50, "TUTORIAL: SHOOTING", 1.5, 1.5, 0);
+        draw_set_font(font_default);
         draw_set_color(c_yellow);
         draw_text(room_width/2, panel_y + 100, "Press SPACE or Click to shoot");
         draw_set_color(c_ltgray);
@@ -50,6 +52,7 @@ switch (tutorial_step) {
         
     case 2: // ESC
         draw_text_transformed(room_width/2, panel_y + 50, "TUTORIAL: PAUSE", 1.5, 1.5, 0);
+        draw_set_font(font_default);
         draw_set_color(c_yellow);
         draw_text(room_width/2, panel_y + 100, "Press ESC to pause and access settings");
         draw_set_color(c_ltgray);
