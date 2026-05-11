@@ -67,3 +67,4 @@ draw_text(room_width/2, panel_y + panel_h - 20, "Step " + string(tutorial_step +
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
+draw_set_font(-1);

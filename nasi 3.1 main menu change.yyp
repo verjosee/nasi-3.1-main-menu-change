@@ -1,6 +1,6 @@
 {
   "$GMProject":"v1",
-  "%Name":"nasi 4 final",
+  "%Name":"nasi 3.1 main menu change",
   "AudioGroups":[
     {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
@@ -26,7 +26,7 @@
   "MetaData":{
     "IDEVersion":"2024.14.3.217",
   },
-  "name":"nasi 4 final",
+  "name":"nasi 3.1 main menu change",
   "resources":[
     {"id":{"name":"fnt_main","path":"fonts/fnt_main/fnt_main.yy",},},
     {"id":{"name":"fnt_score","path":"fonts/fnt_score/fnt_score.yy",},},

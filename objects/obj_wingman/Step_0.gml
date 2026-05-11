@@ -16,14 +16,8 @@ timer += 1;
 if (timer >= 22) {
     instance_create_layer(x + 35, y, "Instances", obj_bullet);
     
-    // === PERBAIKAN: Cek apakah global.sfx_volume sudah ada ===
     var snd = audio_play_sound(shoot, 1, false);
-    if (variable_global_exists("sfx_volume")) {
-        audio_sound_gain(snd, global.sfx_volume);
-    } else {
-        // Default volume jika belum diinisialisasi
-        audio_sound_gain(snd, 1.0);
-    }
+    audio_sound_gain(snd, variable_global_exists("sfx_volume") ? global.sfx_volume : 0.8);
     timer = 0;
 }
 
